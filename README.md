@@ -96,7 +96,7 @@ See [variables.tf] and [examples/] for details and use-cases.
 
 - **`keys`**: _(Optional `list(keys)`)_
 
-  A list keys to be created. Each name belonging to the specified Google Cloud Platform KeyRing and match the regular expression `[a-zA-Z0-9_-]{1,63}`. 
+  A list of key objects describing how keys are going to be created.`. 
   
   Default is `[]`.
 
@@ -105,7 +105,7 @@ See [variables.tf] and [examples/] for details and use-cases.
   ```hcl
   keys = [{
     name       = "terraform-state-bucket-key"
-    owners     = ["terraforn@example-project.iam.gserviceaccount.com"]
+    owners     = ["terraform@example-project.iam.gserviceaccount.com"]
     encrypters = ["group:one@example.com","group:two@example.com"]
     decrypters = ["group:three@example.com"]
   }]
@@ -115,7 +115,7 @@ See [variables.tf] and [examples/] for details and use-cases.
 
   - **`name`**: **_(Required `string`)_**
 
-    The name of a specified Google Cloud Platform KeyRing.
+    The name of a specified Google Cloud Platform KeyRing. It must belong to the specified Google Cloud Platform KeyRing and matching the regular expression `[a-zA-Z0-9_-]{1,63}
 
   - **`owners`**: _(Optional `string`)_
 
