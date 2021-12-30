@@ -72,7 +72,7 @@ See [variables.tf] and [examples/] for details and use-cases.
 
   Default is `true`.
 
-- [**`module_depends_on`**](#var-module_depends_on): *(Optional `list(dependencies)`)*<a name="var-module_depends_on"></a>
+- [**`module_depends_on`**](#var-module_depends_on): *(Optional `list(dependency)`)*<a name="var-module_depends_on"></a>
 
   A list of dependencies. Any object can be _assigned_ to this list to define a hidden external dependency.
 
@@ -98,7 +98,7 @@ See [variables.tf] and [examples/] for details and use-cases.
 
   The resource name for the KeyRing.
 
-- [**`keys`**](#var-keys): *(Optional `list(keys)`)*<a name="var-keys"></a>
+- [**`keys`**](#var-keys): *(Optional `list(key)`)*<a name="var-keys"></a>
 
   A list of key objects describing how keys are going to be created.`.
 
@@ -115,21 +115,21 @@ See [variables.tf] and [examples/] for details and use-cases.
   }]
   ```
 
-  The object accepts the following attributes:
+  Each `key` object in the list accepts the following attributes:
 
-  - [**`name`**](#attr-name-keys): *(**Required** `string`)*<a name="attr-name-keys"></a>
+  - [**`name`**](#attr-keys-name): *(**Required** `string`)*<a name="attr-keys-name"></a>
 
     The name of a specified Google Cloud Platform KeyRing. It must belong to the specified Google Cloud Platform KeyRing and matching the regular expression `[a-zA-Z0-9_-]{1,63}`
 
-  - [**`owners`**](#attr-owners-keys): *(Optional `string`)*<a name="attr-owners-keys"></a>
+  - [**`owners`**](#attr-keys-owners): *(Optional `string`)*<a name="attr-keys-owners"></a>
 
     Identities that will be granted the kms crypto key owner privilege.
 
-  - [**`encrypters`**](#attr-encrypters-keys): *(Optional `string`)*<a name="attr-encrypters-keys"></a>
+  - [**`encrypters`**](#attr-keys-encrypters): *(Optional `string`)*<a name="attr-keys-encrypters"></a>
 
     Identities that will be granted the kms crypto key encrypters privilege.
 
-  - [**`decrypters`**](#attr-decrypters-keys): *(Optional `string`)*<a name="attr-decrypters-keys"></a>
+  - [**`decrypters`**](#attr-keys-decrypters): *(Optional `string`)*<a name="attr-keys-decrypters"></a>
 
     Identities that will be granted the kms crypto key decrypters privilege.
 
