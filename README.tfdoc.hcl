@@ -37,7 +37,7 @@ section {
   title   = "terraform-google-kms"
   toc     = true
   content = <<-END
-    A [Terraform] module for [Google Cloud Platform (GCP)][gcp].
+    A [Terraform] module for managing [Cloud KMS](https://cloud.google.com/security-key-management) keyrings, zero or more keys in keyrings, and IAM role bindings on individual keys.  [Google Cloud Platform (GCP)][gcp].
 
     **_This module supports Terraform version 1
     and is compatible with the Terraform Google Provider version 4._**
@@ -123,7 +123,7 @@ section {
           required    = true
           type        = string
           description = <<-END
-            The location for the KeyRing. A full list of valid locations can be found by running `gcloud kms locations list` or in the docs: https://cloud.google.com/kms/docs/locations.
+            The location for the keyring. A full list of valid locations can be found by running `gcloud kms locations list` or in the docs: https://cloud.google.com/kms/docs/locations.
           END
         }
 
@@ -131,7 +131,7 @@ section {
           required    = true
           type        = string
           description = <<-END
-            The resource name for the KeyRing.
+            The resource name for the keyring.
           END
         }
 
@@ -139,13 +139,16 @@ section {
           type           = list(key)
           default        = []
           description    = <<-END
-            A list of key objects describing how keys are going to be created.`.
+            A list of key objects describing how keys and IAM bindings are going to be created.
           END
           readme_example = <<-END
             keys = [{
               name       = "terraform-state-bucket-key"
               owners     = ["terraform@example-project.iam.gserviceaccount.com"]
-              encrypters = ["group:one@example.com","group:two@example.com"]
+              encrypters = [
+                "group:one@example.com",
+                "group:two@example.com"
+              ]
               decrypters = ["group:three@example.com"]
             }]
           END
@@ -154,28 +157,28 @@ section {
             required    = true
             type        = string
             description = <<-END
-              The name of a specified Google Cloud Platform KeyRing. It must belong to the specified Google Cloud Platform KeyRing and matching the regular expression `[a-zA-Z0-9_-]{1,63}`
+              The name of a specified key. It must belong to the specified keyring and matching the regular expression `[a-zA-Z0-9_-]{1,63}`
             END
           }
 
           attribute "owners" {
             type        = string
             description = <<-END
-              Identities that will be granted the kms crypto key owner privilege.
+              Identities that will be granted the KMS crypto key [owner privilege](https://cloud.google.com/kms/docs/reference/permissions-and-roles#predefined).
             END
           }
 
           attribute "encrypters" {
             type        = string
             description = <<-END
-              Identities that will be granted the kms crypto key encrypters privilege.
+              Identities that will be granted the KMS crypto key [encrypted privilege]((https://cloud.google.com/kms/docs/reference/permissions-and-roles)).
             END
           }
 
           attribute "decrypters" {
             type        = string
             description = <<-END
-              Identities that will be granted the kms crypto key decrypters privilege.
+              Identities that will be granted the kms crypto key [decrypters privilege]((https://cloud.google.com/kms/docs/reference/permissions-and-roles)).
             END
           }
         }
@@ -184,7 +187,7 @@ section {
           type        = string
           default     = "100000s"
           description = <<-END
-            Every time this period passes, generate a new CryptoKeyVersion and set it as the primary. The first rotation will take place after the specified period. The rotation period has the format of a decimal number with up to 9 fractional digits, followed by the letter s (seconds).
+            Every time this period passes, generate a new version of the key and set it as the primary. The first rotation will take place after the specified period. The rotation period has the format of a decimal number with up to 9 fractional digits, followed by the letter `s` (seconds).
           END
         }
 
@@ -192,7 +195,7 @@ section {
           type        = string
           default     = "GOOGLE_SYMMETRIC_ENCRYPTION"
           description = <<-END
-            The algorithm to use when creating a version based on this template. See the https://cloud.google.com/kms/docs/reference/rest/v1/CryptoKeyVersionAlgorithm for possible inputs.
+            The algorithm to use when creating a version based on this template. For possible inputs please see https://cloud.google.com/kms/docs/reference/rest/v1/CryptoKeyVersionAlgorithm.
           END
         }
 
