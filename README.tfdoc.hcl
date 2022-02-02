@@ -222,31 +222,52 @@ section {
     title   = "Module Outputs"
     content = <<-END
       The following attributes are exported in the outputs of the module:
-
-      - **`module_enabled`**
-
-        Whether this module is enabled.
-
-      - **`key_ring`**
-
-        All outputs of the created `google_kms_key_ring` resource.
-
-      - **`keys`**
-
-        All outputs of the created `google_kms_crypto_key` resources.
-
-      - **`encrypter_iam_members`**
-
-        All outputs of all created `google_kms_crypto_key_iam_member` resources for members with encrypter permissions.
-
-      - **`decrypter_iam_members`**
-
-        All outputs of all created `google_kms_crypto_key_iam_member` resources for members with decrypter permissions.
-
-      - **`owner_iam_members`**
-
-        All outputs of all created `google_kms_crypto_key_iam_member` resources for members with owner permissions.
     END
+
+    output "module_enabled" {
+      type        = bool
+      description = <<-END
+        Whether this module is enabled.
+      END
+    }
+
+    output "key_ring" {
+      type        = object(key_ring)
+      description = <<-END
+         All outputs of the created `google_kms_key_ring` resource.
+      END
+    }
+
+    output "keys" {
+      type        = list(key)
+      description = <<-END
+        All outputs of the created `google_kms_crypto_key` resources.
+      END
+    }
+
+    output "encrypter_iam_members" {
+      type        = list(encrypter_iam_member)
+      description = <<-END
+        All outputs of all created `google_kms_crypto_key_iam_member` resources
+        for members with encrypter permissions.
+      END
+    }
+
+    output "decrypter_iam_members" {
+      type        = list(decrypter_iam_member)
+      description = <<-END
+        All outputs of all created `google_kms_crypto_key_iam_member` resources
+        for members with decrypter permissions.
+      END
+    }
+
+    output "owner_iam_members" {
+      type        = list(owner_iam_member)
+      description = <<-END
+        All outputs of all created `google_kms_crypto_key_iam_member` resources
+        for members with owner permissions.
+      END
+    }
   }
 
   section {

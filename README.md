@@ -164,29 +164,32 @@ See [variables.tf] and [examples/] for details and use-cases.
 
 The following attributes are exported in the outputs of the module:
 
-- **`module_enabled`**
+- [**`module_enabled`**](#output-module_enabled): *(`bool`)*<a name="output-module_enabled"></a>
 
   Whether this module is enabled.
 
-- **`key_ring`**
+- [**`key_ring`**](#output-key_ring): *(`object(key_ring)`)*<a name="output-key_ring"></a>
 
   All outputs of the created `google_kms_key_ring` resource.
 
-- **`keys`**
+- [**`keys`**](#output-keys): *(`list(key)`)*<a name="output-keys"></a>
 
   All outputs of the created `google_kms_crypto_key` resources.
 
-- **`encrypter_iam_members`**
+- [**`encrypter_iam_members`**](#output-encrypter_iam_members): *(`list(encrypter_iam_member)`)*<a name="output-encrypter_iam_members"></a>
 
-  All outputs of all created `google_kms_crypto_key_iam_member` resources for members with encrypter permissions.
+  All outputs of all created `google_kms_crypto_key_iam_member` resources
+  for members with encrypter permissions.
 
-- **`decrypter_iam_members`**
+- [**`decrypter_iam_members`**](#output-decrypter_iam_members): *(`list(decrypter_iam_member)`)*<a name="output-decrypter_iam_members"></a>
 
-  All outputs of all created `google_kms_crypto_key_iam_member` resources for members with decrypter permissions.
+  All outputs of all created `google_kms_crypto_key_iam_member` resources
+  for members with decrypter permissions.
 
-- **`owner_iam_members`**
+- [**`owner_iam_members`**](#output-owner_iam_members): *(`list(owner_iam_member)`)*<a name="output-owner_iam_members"></a>
 
-  All outputs of all created `google_kms_crypto_key_iam_member` resources for members with owner permissions.
+  All outputs of all created `google_kms_crypto_key_iam_member` resources
+  for members with owner permissions.
 
 ## External Documentation
 
