@@ -50,7 +50,7 @@ Most basic usage just setting required arguments:
 
 ```hcl
 module "terraform-google-kms" {
-  source = "github.com/mineiros-io/terraform-google-kms?ref=v0.1.0"
+  source = "github.com/mineiros-io/terraform-google-kms?ref=v0.0.1"
 
   keyring  = "keyring-example"
   location = "global"
